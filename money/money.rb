@@ -2,18 +2,21 @@ module Money
   class Money
     include Comparable
 
-    protected
-
-    attr_reader :amount
+    attr_reader :currency
 
     class << self
       def dollar(amount)
-        Dollar.new(amount)
+        Dollar.new(amount, 'USD')
       end
 
       def franc(amount)
-        Franc.new(amount)
+        Franc.new(amount, 'CHF')
       end
+    end
+
+    def initialize(amount, currency)
+      @amount = amount
+      @currency = currency
     end
 
     def <=>(other)
@@ -21,5 +24,9 @@ module Money
 
       amount <=> other.amount
     end
+
+    protected
+
+    attr_reader :amount
   end
 end

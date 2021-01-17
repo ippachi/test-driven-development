@@ -1,6 +1,6 @@
 require 'test-unit'
-require_relative '../dollar'
-require_relative '../franc'
+require_relative '../money/dollar'
+require_relative '../money/franc'
 
 module Money
   class MoneyTest < Test::Unit::TestCase

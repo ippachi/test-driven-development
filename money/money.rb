@@ -20,9 +20,13 @@ module Money
     end
 
     def <=>(other)
-      return nil if self.class != other.class
+      return nil if self.currency != other.currency
 
       amount <=> other.amount
+    end
+
+    def times(multiplier)
+      Money.new(@amount * multiplier, @currency)
     end
 
     protected

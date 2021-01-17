@@ -18,7 +18,7 @@ module Money
       assert_false(Money.franc(5) == Money.dollar(5))
     end
 
-    def test_franc__multiplication
+    def test_franc_multiplication
       five = Money.franc(5)
       assert_equal(Money.franc(10), five.times(2))
       assert_equal(Money.franc(15), five.times(3))
@@ -27,6 +27,10 @@ module Money
     def test_currency
       assert_equal('USD', Money.dollar(1).currency)
       assert_equal('CHF', Money.franc(1).currency)
+    end
+
+    def test_difference_class_equality
+      assert_true(Money.new(10, 'CHF') == Franc.new(10, 'CHF'))
     end
   end
 end

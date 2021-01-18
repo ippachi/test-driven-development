@@ -45,9 +45,11 @@ module Money
       Money.new(@amount * multiplier, @currency)
     end
 
+    # @param bank [Bank]
     # @param to [String]
-    def reduce(_to)
-      self
+    def reduce(bank, to)
+      rate = bank.rate(@currency, to)
+      Money.new(@amount / rate, to)
     end
   end
 end

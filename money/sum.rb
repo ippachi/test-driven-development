@@ -12,8 +12,9 @@ module Money
       @addend = addend
     end
 
+    # @param bank [Bank]
     # @param to [String]
-    def reduce(to)
+    def reduce(bank, to)
       amount = @augend.amount + addend.amount
       Money.new(amount, to)
     end

@@ -1,8 +1,10 @@
 module Money
   class Bank
+    # @param source
     # @param to [String]
+    # @return [Money]
     def reduce(source, to)
-      Money.dollar(10)
+      source.reduce(to)
     end
   end
 end

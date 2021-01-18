@@ -1,7 +1,12 @@
+require_relative './sum'
+
 module Money
   class Money
     include Comparable
 
+    # @return [Integer]
+    attr_reader :amount
+    # @return [String]
     attr_reader :currency
 
     class << self
@@ -32,7 +37,7 @@ module Money
 
     # @param other [self]
     def plus(other)
-      Money.new(@amount + other.amount, @currency)
+      Sum.new(self, other)
     end
 
     # @param multiplier [Integer]
@@ -40,8 +45,9 @@ module Money
       Money.new(@amount * multiplier, @currency)
     end
 
-    protected
-
-    attr_reader :amount
+    # @param to [String]
+    def reduce(_to)
+      self
+    end
   end
 end

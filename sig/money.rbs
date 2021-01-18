@@ -1,0 +1,37 @@
+module Money
+  interface _Expression
+    def plus: (_Expression) -> _Expression
+    def reduce: (Bank, String) -> Money
+  end
+
+  class Money
+    include Comparable
+    include _Expression
+
+    attr_reader currency: String
+    attr_reader amount: Integer
+
+    def self.dollar: (Integer) -> Money
+    def self.franc: (Integer) -> Money
+
+    def initialize: (Integer, String) -> void
+
+    def <=>: (Money) -> (Integer | nil)
+    def times: (Integer) -> _Expression
+  end
+
+  class Bank
+    def reduce: (_Expression, String) -> Money
+    def add_rate: (String, String, Integer) -> void
+    def rate: (String, String) -> Integer
+  end
+
+  class Sum
+    include _Expression
+
+    attr_reader augend: _Expression
+    attr_reader addend: _Expression
+
+    def initialize: (_Expression, _Expression) -> void
+  end
+end

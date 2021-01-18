@@ -12,6 +12,7 @@ module Money
       @from == other.from && @to == other.to
     end
 
+    # @return [Integer]
     def hash
       0
     end

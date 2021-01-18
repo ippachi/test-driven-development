@@ -1,22 +1,20 @@
 module Money
   class Sum
-    # @return [Money]
-    attr_reader :augend
-    # @return [Money]
-    attr_reader :addend
+    attr_reader :augend, :addend
 
-    # @param augend [Money]
-    # @param addend [Money]
     def initialize(augend, addend)
       @augend = augend
       @addend = addend
     end
 
-    # @param bank [Bank]
-    # @param to [String]
     def reduce(bank, to)
-      amount = @augend.amount + addend.amount
-      Money.new(amount, to)
+      amount = @augend.reduce(bank, to).amount +
+               @addend.reduce(bank, to).amount
+      ::Money::Money.new(amount, to)
+    end
+
+    def plus(addend)
+      Money::Money.new(0, '')
     end
   end
 end
